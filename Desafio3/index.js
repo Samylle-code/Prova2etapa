@@ -1,9 +1,16 @@
 class Animais {
-    constructor (genero, classe, ordem, habitat){
+    constructor (genero, classe, ordem, habitat, animal){
         this.genero = genero;
         this.classe = classe;
         this.ordem = ordem;
         this.habitat = habitat;
+        this.animal = {
+            nome: "",
+            genero: genero,
+            classe: classe,
+            ordem: ordem,
+            habitat: habitat
+        }
     }
 
     locomoverSe(classe, movimento){
@@ -18,21 +25,26 @@ class Animais {
 
 class Mamiferos extends Animais{
     constructor (genero, classe, ordem, habitat){
-        super(genero, classe, ordem, habitat);
-        super.classe = classe;
-
+        super(genero, classe, ordem, habitat); 
+        
     }
 
-    locomoverSe(cetaceo){
-        if (cetaceo == true){
-            super.locomoverSe("Mamiferos/cetaceo","nada no mar");
-        } else {
-            super.locomoverSe("Mamiferos", "anda na terra");
-        }
+    locomoverSe(){
+        let cetaceo = this.classe;
+        cetaceo = false;
+    
+            if (this.classe == "marinho"){
+                cetaceo = true;
+                super.locomoverSe("Mamiferos/cetaceo","nada no mar");
+            } else {
+                super.locomoverSe("Mamiferos", "anda na terra");
+            }
     }
-
-    alimentarSe(tipo){
+    alimentarSe(){
+        let carnivora = this.ordem;
+        carnivora = false;
         if (tipo == "carnivora"){
+            carnivora = true;
             super.locomoverSe("Mamiferos","que come carne");
         } else {
             super.locomoverSe("Mamiferos", "que não come carne");
@@ -85,6 +97,6 @@ class Aves extends Animais{
     }
 }
 
-const gaviao = new Aves();
-gaviao.locomoverSe();
-gaviao.alimentarSe("carnivora");
+const formiga = new Mamiferos("feliz", "marinho", "carnivora", "terra");
+console.log("Seu genero é", formiga.genero,"Sua classe é",formiga.classe);
+formiga.locomoverSe();
